@@ -1,6 +1,5 @@
 # FeelFlow.ai
-
-Topic and Purpose:
+Purpose:
 
 FeelFlow.ai is a website empowered by ChatGPT and Spotify's API to recommend various songs to anyone who is willing to expand their playlist. The source of my data comes from, of course, ChatGPT and Spotify's music database. To use FeelFlow.ai, the user will type in whatever they want into the textbox. They can type in their feelings such as "I feel great today!" or even something abstract like "friend". After they type in something, they can either press enter on the keyboard or click on the "Give me a song recommendation!" button. The corresponding result will show up below the textbox, listing the album name and cover, track title, artist name, duration, and a 30 second preview of the song. 
 
