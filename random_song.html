@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="description" content="Discover new music with FeelFlow.ai's Random Song feature. Get a surprise song selection based on a variety of genres and years, bringing a sense of adventure to your music exploration.">
+	<title>Random Song</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		#output-song {
+			top: 100px;
+			align-items: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="nav">
+		<a href="FeelFlow_ai.php">Home</a>
+		<a href="add.php">Add Song</a>
+		<a href="playlist.php">My Playlist</a>
+		<a href="random_song.html">Random Song!</a>
+	</div> <!-- #nav -->
+
+	<div id="output-song">
+	    	
+	</div>
+
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+	<script> 
+
+		document.querySelector("body")
+		let h = 0
+		let l = 0
+		const colorChangeInterval = setInterval(() => {
+    		document.body.style.backgroundColor = `hsl(${h}, 80%, 50%)`;
+    		h++
+    		l+=2
+    		if (h === 360) {
+      			h = 0
+    		}
+    		if (l === 100) {
+    			l = 0
+    		}
+    		// console.log(h);
+  		}, 50); // Change the color every 1000 milliseconds (1 second)
+
+
+		const clientID = "c5a2543e00af4f9fbb83eaaa25676031"
+        const clientSecret = "98a6e127ffec44679697189371abb86d"
+
+        
+		let accessToken;
+
+
+        const _getToken = () => {
+		    return $.ajax({
+		        url: 'https://accounts.spotify.com/api/token',
+		        method: 'POST',
+		        headers: {
+		            'Content-Type': 'application/x-www-form-urlencoded',
+		            'Authorization': 'Basic ' + btoa(clientID + ':' + clientSecret)
+		        },
+		        data: 'grant_type=client_credentials',
+		        dataType: 'json'
+		        
+		        
+		    });
+		}
+
+
+		const randomNumber = Math.floor(Math.random() * 73) + 1950;
+
+		const endpoint = "https://api.spotify.com/v1/search?q=year:"+randomNumber+"&type=track,album&limit=50"
+		console.log(endpoint)
+
+		_getToken().done(function(data) {
+		    const accessToken = data.access_token;
+		    console.log(accessToken, "hi");
+		    $.ajax({
+				url: endpoint,
+				// dataType: "json",
+				method: "GET",
+				headers: {
+					"Authorization": `Bearer ${accessToken}`
+				},
+				
+				success: function(data) {
+					const randomNumber2 = Math.floor(Math.random() * 50);
+					console.log(data)
+					console.log("HIIIII")
+					console.log(data.tracks.items[randomNumber2])
+					console.log(data.tracks.items[randomNumber2].artists[0].name)
+					console.log(data.tracks.items[randomNumber2].name)
+					console.log(data.tracks.items[randomNumber2].duration_ms)
+					// console.log(data.tracks.items[0].description)
+					console.log(data.tracks.items[randomNumber2].preview_url)
+					// console.log(data.albums.items[0].images[1].url)
+					// console.log(data.albums.items[0].name)
+					console.log(data.tracks.items[randomNumber2].album.name)
+					console.log(data.tracks.items[randomNumber2].album.images[1].url)
+					document.querySelector("#output-song").innerHTML = ""
+					createSong(data.tracks.items[randomNumber2].name, data.tracks.items[randomNumber2].album.name, data.tracks.items[randomNumber2].artists[0].name, data.tracks.items[randomNumber2].duration_ms, data.tracks.items[randomNumber2].album.images[1].url, data.tracks.items[randomNumber2].preview_url)
+				},
+				error: function(error) {
+					alert("AJAX error")
+					console.log(error)
+				}
+			})
+		}).fail(function(error) {
+		    console.error('Failed to get access token:', error);
+		});
+
+
+  		function createSong(track, album, artist, duration_ms, cover, preview){
+
+
+        	// track.appendChild(divElem);
+
+        	const albumContainer = document.createElement("div")
+        	const imgContainer = document.createElement("img")
+        	const trackName = document.createElement("div")
+        	const albumName = document.createElement("div")
+			const artistName = document.createElement("div")
+			const duration = document.createElement("div")
+			const audioContainer = document.createElement("div")
+			const audio = document.createElement("audio")
+			const buttonImg = document.createElement("img")
+			const addButton = document.createElement("a")
+			// const tdArtist = document.createElement("td")
+			// const tdTrack = document.createElement("td")
+			// const tdAlbum = document.createElement("td")
+			// const tdAudio = document.createElement("td")
+			// const audio = document.createElement("audio")
+
+			imgContainer.src = cover
+			imgContainer.alt = album + " Cover"
+
+			audio.src = preview
+			audio.controls = true
+
+			artistName.innerHTML = artist
+			trackName.innerHTML = track
+			albumContainer.innerHTML = album
+			duration.innerHTML = duration_ms
+
+			albumContainer.id = "albumContainer"
+			audioContainer.id = "audioContainer"
+			audioContainer.appendChild(audio)
+
+			buttonImg.id = "buttonImg"
+
+			buttonImg.src = "add.png"
+			buttonImg.alt = "add icon"
+
+			addButton.id = "addButton"
+			
+
+			addButton.addEventListener("click", function() {
+		        alert("Button clicked for " + track);
+		    })
+
+		    addButton.appendChild(buttonImg)
+
+			document.querySelector("#output-song").appendChild(albumContainer)
+			// albumContainer.appendChild(imgContainer)
+			albumContainer.appendChild(albumName)
+			albumContainer.appendChild(imgContainer)
+
+			document.querySelector("#output-song").appendChild(trackName)
+			document.querySelector("#output-song").appendChild(albumName)
+			document.querySelector("#output-song").appendChild(artistName)
+			document.querySelector("#output-song").appendChild(duration)
+			document.querySelector("#output-song").appendChild(audioContainer)
+			// document.querySelector("#output-song").appendChild(imgContainer_add)
+			document.querySelector("#output-song").appendChild(addButton)
+
+
+			// albumContainer.appendChild(imgContainer)
+			
+
+        }
+
+		
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+	
+</body>
+</html>

@@ -1,0 +1,196 @@
+/*		@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Serif+KR:wght@300&family=Poppins:wght@400;500&family=Roboto+Condensed&family=Rubik&family=Ubuntu:ital@1&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Serif+KR:wght@300&family=Poppins:wght@400;500&family=Roboto+Condensed&family=Rubik&family=Ubuntu:ital@0;1&display=swap');
+
+body{
+
+	background-color: red;
+/*			animation-name: colorLoop;*/
+/*			animation-duration: 10s ;*/
+
+}
+#main_container {
+    text-align: center; /* Center align the content horizontally */
+    display: flex;
+    flex-direction: column;
+}
+#main_box{
+	height: 350px;
+	width: 700px;
+	border: 5px solid white;
+	position: absolute;
+	top: 250px;
+	left: 50%;
+	transform: translate(-50%);
+	background-color: inherit;
+}
+#logo{
+	height: 200px;
+	width: auto;
+	position: absolute;
+	left: 50%;
+	top: 50px;
+/*			top: 50%;*/
+	transform: translate(-50%);
+}
+/*#button{
+	width: 700px;
+	height: 50px;
+
+}*/
+textarea {
+  width: 100%;
+  height: 100%;
+  background-color: inherit; /* Inherit the background color from the parent */
+  font-family: Ubuntu, sans-serif; /* Change the font for the text area */
+  font-size: 30px;
+  color: white;
+}
+
+textarea::placeholder {
+	font-style: italic;
+	font-family: Ubuntu, sans-serif; 
+	color: white; /* Change the color of the placeholder text */
+}
+
+.btn-1 {
+/*		  background: rgba(255, 0, 0, 0.985); */
+	color: white;
+	font-weight: 100;
+	position: absolute;
+	text-align: center;
+	width: 700px;
+	height: 50px;
+	left: 50%;
+	transform: translate(-50%);
+/*			vertical-align: middle;*/
+	font-family: Ubuntu, sans-serif;
+	font-size: 20px;
+/*			width: 100%;*/
+/*			border: 1px solid white;*/
+	top: 620px;
+}
+
+
+/*		.btn-1 svg {*/
+.btn-1 svg{
+/*			height: 45px;*/
+/*			left: 0;*/
+	position: absolute;
+/*			top: 0;*/
+/*			width: 100%;*/
+	width: 700px;
+	height: 50px;
+	text-align: center;
+/*			border: 1px solid white;*/
+/*			color: white;*/
+
+}
+
+.btn-1 rect {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 422, 0;
+  transition: all 0.35s linear;
+}
+
+.btn-1:hover {
+	color: white;
+  background: rgba(255, 0, 0, 0);
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.btn-1:hover rect {
+  stroke-width: 5;
+  stroke-dasharray: 15, 310;
+  stroke-dashoffset: 48;
+  transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#output-song {
+	display: flex;
+	width: 1200px;
+	height: 300px;
+	position: absolute;
+	text-align: center;
+	top: 700px;
+	left: 50%;
+	transform: translate(-50%);
+	padding-bottom: 20px;
+	justify-content: center;
+	gap: 50px;
+	align-items: center;
+	font-family: Ubuntu, sans-serif;
+	font-size: 20px;
+	color: white;
+	flex-direction: row;
+
+}
+#albumContainer {
+	display: flex;
+	flex-direction: column; 
+}
+
+#albumName {
+	display: block;
+	margin: auto;
+}
+
+#audioContainer{
+	position: relative;
+	top: 15px;
+}
+
+#buttonImg{
+	height: 50px;
+	position: relative;
+	top: -5px;
+	justify-content: center;
+	align-items: baseline;
+}
+
+#buttonImg:hover{
+	
+}
+
+#playlist{
+	position: relative;
+	height: 30px;
+}
+
+#nav {
+	
+	display: flex;
+	justify-content: center;
+	background-color: inherit;
+	width: 100%;
+
+}
+#nav a {
+	text-decoration: none;
+	font-family: Ubuntu, sans-serif; 
+	color: black;
+	width: 250px;
+	height: 50px;
+
+/*			display: block; ?????*/
+	text-align: center;
+	line-height: 50px;
+
+}
+#nav a:hover {
+	border-bottom: 2px solid white;
+	color: white;
+}
+
+h1{
+	font-family: Ubuntu, sans-serif; 
+	color: white;
+	text-align: center;
+}
+
+p{
+	font-family: Ubuntu, sans-serif; 
+	color: white;
+}
